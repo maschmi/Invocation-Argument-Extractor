@@ -25,32 +25,55 @@ namespace Inw.Logger
 
         public void Debug(string logmessage)
         {
-            if(_debug)
+            if(_debug)                
                 Console.WriteLine("[DEBUG]\t" + logmessage);
         }
 
         public void Error(string logmessage)
         {
             if (_error)
-                Console.WriteLine("[ERROR]\t" + logmessage);
+                using(var colorScope = new ColorScope(ConsoleColor.Black, ConsoleColor.Red))
+                    Console.WriteLine("[ERROR]\t" + logmessage);
         }
 
         public void Info(string logmessage)
         {
-            if (_info)
+            if (_info)                
                 Console.WriteLine("[INFO]\t" + logmessage);
         }
 
         public void Warning(string logmessage)
         {
             if(_warning)
-                Console.WriteLine("[WARN]\t" + logmessage);
+                using (var colorScope = new ColorScope(ConsoleColor.Black, ConsoleColor.Yellow))
+                    Console.WriteLine("[WARN]\t" + logmessage);
         }
 
         public void Verbose(string logmessage)
         {
             if(_verbose)
                 Console.WriteLine("[VERBOSE]\n\t" + logmessage);
-        }      
+        }
+
+        private class ColorScope : IDisposable
+        {
+            private ConsoleColor _oldBackgrund;
+            private ConsoleColor _oldForeground;
+
+            public ColorScope(ConsoleColor background, ConsoleColor foreground)
+            {
+                _oldBackgrund = Console.BackgroundColor;
+                _oldForeground = Console.ForegroundColor;
+
+                Console.BackgroundColor = background;
+                Console.ForegroundColor = foreground;
+            }
+
+            public void Dispose()
+            {
+                Console.ForegroundColor = _oldForeground;
+                Console.BackgroundColor = _oldBackgrund;
+            }
+        }
     }
 }
