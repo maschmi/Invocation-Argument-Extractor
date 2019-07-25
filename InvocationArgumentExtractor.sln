@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestSolution", "TestSolutio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestData", "TestSolution\TestData\TestData.csproj", "{AFAF46C9-32F7-481A-BB07-8F0437EE524D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArgumentExtractionTests", "ArgumentExtractionTests\ArgumentExtractionTests.csproj", "{E78FA8CC-0A77-4401-8AEF-E5CD4241F03A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{AFAF46C9-32F7-481A-BB07-8F0437EE524D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFAF46C9-32F7-481A-BB07-8F0437EE524D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFAF46C9-32F7-481A-BB07-8F0437EE524D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E78FA8CC-0A77-4401-8AEF-E5CD4241F03A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E78FA8CC-0A77-4401-8AEF-E5CD4241F03A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E78FA8CC-0A77-4401-8AEF-E5CD4241F03A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E78FA8CC-0A77-4401-8AEF-E5CD4241F03A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

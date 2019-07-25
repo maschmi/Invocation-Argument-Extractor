@@ -25,5 +25,10 @@ namespace Inw.TestData
             Console.WriteLine("This is another test in class 2");
             Console.WriteLine(2.5f);
         }
+
+        public void ParamsMethod(params int[] vs)
+        {
+            //do nothing
+        }
     }
 }
