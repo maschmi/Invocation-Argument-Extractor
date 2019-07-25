@@ -18,36 +18,15 @@ namespace Inw.ArgumentExtraction
         static async Task Main(string[] args)
         {
             _logger = new ConsoleLogger(verbose: true);
-            var stopWatch = new Stopwatch();
+            
 
             using (var solLoader = new SolutionLoader(_logger, 1))
             {
                 var solution = await solLoader.LoadSolution(_pathToTestSolution);
 
-                _logger.Verbose("Running with SmybolFinder");
-                stopWatch.Start();
-                await Run(solution, new SymbolExtractorWithSymbolFinder(_logger));
-                stopWatch.Stop();
-                var finderTime = stopWatch.ElapsedMilliseconds;
-                stopWatch.Reset();
-
                 _logger.Verbose("Running with Compilation");
-                stopWatch.Start();
-                await Run(solution, new SymbolExtractorWithCompilation(_logger));
-                stopWatch.Stop();
-                var compilationTime = stopWatch.ElapsedMilliseconds;
-
-                _logger.Verbose("Running with SmybolFinder");
-                stopWatch.Start();
-                await Run(solution, new SymbolExtractorWithSymbolFinder(_logger));
-                stopWatch.Stop();
-                var finderTime2 = stopWatch.ElapsedMilliseconds;
-                stopWatch.Reset();
-
-                _logger.Info("Execution times");
-                _logger.Info("SymbolFinder " + finderTime + "ms");
-                _logger.Info("Compilation " + compilationTime + "ms");
-                _logger.Info("SymbolFinder (2nd run)" + finderTime2 + "ms");
+            
+                await Run(solution, new SymbolExtractorWithCompilation(_logger));          
             }
         }
 
@@ -55,7 +34,7 @@ namespace Inw.ArgumentExtraction
         {
             var argumentExtractor = new InvocationArgumentExtractor(_logger);
 
-            var declaredSymbol = await symbolExtractor.FindSymbols(solution, "System.Console", "WriteLine", new[] { "string" });
+            var declaredSymbol = await symbolExtractor.FindSymbols(solution, "Inw.TestData.TestClass2", "ParamsMethod", new[] { "params", "int" });
 
             foreach (var symbol in declaredSymbol)
             {
