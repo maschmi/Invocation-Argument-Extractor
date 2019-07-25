@@ -74,7 +74,7 @@ namespace Inw.ArgumentExtraction.Finder
                 if (parts.Count() != methodParameterTypes.Count())
                     continue;
 
-                if (parts.Select(p => p.Symbol.ToString()).SequenceEqual(methodParameterTypes))
+                if (parts.Select(p => p.ToString()).SequenceEqual(methodParameterTypes))
                     result.Add(member);
             }
 
