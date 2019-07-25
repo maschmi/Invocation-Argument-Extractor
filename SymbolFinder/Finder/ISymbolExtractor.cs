@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Inw.ArgumentExtraction.Finder
 {
-    internal interface ISymbolExtractor
+    public interface ISymbolExtractor
     {
         Task<IEnumerable<ISymbol>> FindSymbols(Solution solution, string fullTypeName, string methodName, string[] methodParameterTypes);
     }

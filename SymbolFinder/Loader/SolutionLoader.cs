@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis.MSBuild;
 
 namespace Inw.ArgumentExtraction.Loader
 {
-    internal class SolutionLoader : IDisposable
+    public class SolutionLoader : IDisposable
     {
         private readonly MSBuildWorkspace _workspace;
         private readonly IDoLog _logger;
@@ -61,13 +61,13 @@ namespace Inw.ArgumentExtraction.Loader
 
         private VisualStudioInstance SelectVisualStudioInstance(VisualStudioInstance[] visualStudioInstances)
         {
-            _logger.Info("Multiple installs of MSBuild detected please select one:");
+            _logger.Warning("Multiple installs of MSBuild detected please select one:");
             for (int i = 0; i < visualStudioInstances.Length; i++)
             {
-                _logger.Info($"Instance {i + 1}");
-                _logger.Info($"    Name: {visualStudioInstances[i].Name}");
-                _logger.Info($"    Version: {visualStudioInstances[i].Version}");
-                _logger.Info($"    MSBuild Path: {visualStudioInstances[i].MSBuildPath}");
+                _logger.Warning($"Instance {i + 1}");
+                _logger.Warning($"    Name: {visualStudioInstances[i].Name}");
+                _logger.Warning($"    Version: {visualStudioInstances[i].Version}");
+                _logger.Warning($"    MSBuild Path: {visualStudioInstances[i].MSBuildPath}");
             }
             
             while (true)

@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Inw.ArgumentExtraction.Finder
 {
-    internal class SymbolExtractorWithCompilation : ISymbolExtractor
+    public sealed class SymbolExtractorWithCompilation : ISymbolExtractor
     {
         private readonly IDoLog _logger;
 

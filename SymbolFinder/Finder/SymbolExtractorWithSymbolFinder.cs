@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis.FindSymbols;
 
 namespace Inw.ArgumentExtraction.Finder
 {
-    internal sealed class SymbolExtractorWithSymbolFinder : ISymbolExtractor
+    public sealed class SymbolExtractorWithSymbolFinder : ISymbolExtractor
     {
         private readonly IDoLog _logger;
 
