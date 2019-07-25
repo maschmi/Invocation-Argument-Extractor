@@ -26,7 +26,8 @@ namespace Inw.ArgumentExtraction.Loader
             // NOTE: Be sure to register an instance with the MSBuildLocator 
             //       before calling MSBuildWorkspace.Create()
             //       otherwise, MSBuildWorkspace won't MEF compose.
-            MSBuildLocator.RegisterInstance(instance);
+            if(!MSBuildLocator.IsRegistered)
+                MSBuildLocator.RegisterInstance(instance);
             _workspace = MSBuildWorkspace.Create();
         }
 

@@ -21,7 +21,6 @@ namespace Inw.ArgumentExtractionTests
             {
                 var solution = await solLoader.LoadSolution(_pathToTestSolution);
                 solution.Projects.Select(p => p.Name).Should().BeEquivalentTo(new[] { "TestData" });
-                
             }
         }
     }
