@@ -11,7 +11,7 @@ using Inw.ArgumentExtraction.DTO;
 
 namespace Inw.ArgumentExtraction.Extractors
 {
-    internal sealed class InvocationArgumentExtractor
+    public sealed class InvocationArgumentExtractor
     {
         private readonly IDoLog _logger;
 

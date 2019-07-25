@@ -8,7 +8,7 @@ using Microsoft.CodeAnalysis;
 
 namespace Inw.ArgumentExtraction.Finder
 {
-    internal class SymbolExtractorWithCompilation : ISymbolExtractor
+    public sealed class SymbolExtractorWithCompilation : ISymbolExtractor
     {
         private readonly IDoLog _logger;
 
@@ -74,7 +74,7 @@ namespace Inw.ArgumentExtraction.Finder
                 if (parts.Count() != methodParameterTypes.Count())
                     continue;
 
-                if (parts.Select(p => p.Symbol.ToString()).SequenceEqual(methodParameterTypes))
+                if (parts.Select(p => p.ToString()).SequenceEqual(methodParameterTypes))
                     result.Add(member);
             }
 
