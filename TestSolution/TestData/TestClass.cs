@@ -12,7 +12,10 @@ namespace Inw.TestData
         {
 
         }
-
+        
+        public void LocationTest(int parameter)
+        {}
+            
         public void TestMethod1()
         {
             Console.WriteLine("This is a test");
