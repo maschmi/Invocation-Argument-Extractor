@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Inw.TestData
 {
+    [ExcludeFromCodeCoverage]
     public class TestClass2
     {
         public TestClass2()
@@ -13,13 +15,13 @@ namespace Inw.TestData
 
         }
         
-        //#####do not move, this is for positional tests (this is line 16)
+        //#####do not move, this is for positional tests (this is line 18)
         private void LocationMethod()
         {
             var testclass = new TestClass();
             testclass.LocationTest(19);
         }
-        //##### end - do not move(this is line 22)
+        //##### end - do not move(this is line 24)
         
         public void TestMethod1()
         {

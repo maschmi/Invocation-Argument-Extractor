@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -14,6 +15,7 @@ using NUnit.Framework.Internal;
 
 namespace Inw.ArgumentExtractionTests
 {
+    [ExcludeFromCodeCoverage]
     [TestFixture]
     public class ArgumentExtractorTest
     {
@@ -38,7 +40,7 @@ namespace Inw.ArgumentExtractionTests
         }
 
         [Test]
-        public async Task ArgumentExtractor_SymbolFound_ReportsZeroBaseLine()
+        public async Task ArgumentExtractor_SymbolFound_ReportsCorrectLocation()
         {
             var symbolToUse = (await GetTestSymbolForLocation()).FirstOrDefault();
             var sut = new InvocationArgumentExtractor(_logger);
@@ -48,7 +50,7 @@ namespace Inw.ArgumentExtractionTests
             result.Should().HaveCount(1);
             var firstResult = result.First();
             var location = firstResult.FilePosition;
-            location.line.Should().Be(20);
+            location.line.Should().Be(22);
             location.col.Should().Be(23);
         }
 
