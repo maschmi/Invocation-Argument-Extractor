@@ -11,7 +11,7 @@ using Inw.ArgumentExtractionTests;
 using Microsoft.CodeAnalysis;
 using Inw.ArgumentExtraction.Finder;
 
-namespace ArgumentExtractionTests
+namespace Inw.ArgumentExtractionTests
 {
     [TestFixture]
     internal class SymbolExtractorTest

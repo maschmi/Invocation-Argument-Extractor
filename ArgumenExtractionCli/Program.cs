@@ -57,18 +57,17 @@ namespace Inw.ArgumentExtractionCli
             {
                 var argumentResults = await argumentExtractor.FindArguments(symbol, solution);
                 _logger.Info("Reporting location and arguments for calls to " + symbol.ToDisplayString());
-                foreach (var result in argumentResults.OrderBy(r => r.Location.Document.FilePath))
+                foreach (var result in argumentResults.OrderBy(r => r.FilePath))
                 {
                     PrintResult(result);
                 }
             }
-
         }
 
         private static void PrintResult(ArgumentResults result)
         {
-            var file = result.Location.Document.FilePath;
-            var line = result.Location.Location.GetLineSpan().StartLinePosition;
+            var file = result.FilePath;
+            var line = result.FilePosition.line;
 
             var arguments = result.Arguments.Select(a => a.ToString());
             _logger.Info($"Invocation in {file} at {line} using arguments:");

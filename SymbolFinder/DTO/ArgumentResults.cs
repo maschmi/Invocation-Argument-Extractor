@@ -11,12 +11,19 @@ namespace Inw.ArgumentExtraction.DTO
 {
     public sealed class ArgumentResults
     {
-        public ReferenceLocation Location { get; }
+        public string FileName { get; }
+        public string FilePath { get; }
+        public (int line, int col) FilePosition { get; }
+        
         public List<ArgumentSyntax> Arguments { get; }
 
         public ArgumentResults(ReferenceLocation location)
         {            
-            Location = location;
+            var startPosition = location.Location.GetLineSpan().StartLinePosition;
+            FilePosition = (startPosition.Line + 1, startPosition.Character + 1);
+            FilePath = location.Document.FilePath;
+            FileName = location.Document.Name;
+            
             Arguments = new List<ArgumentSyntax>();
         }
     }

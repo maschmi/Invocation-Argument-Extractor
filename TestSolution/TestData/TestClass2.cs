@@ -12,7 +12,15 @@ namespace Inw.TestData
         {
 
         }
-
+        
+        //#####do not move, this is for positional tests (this is line 16)
+        private void LocationMethod()
+        {
+            var testclass = new TestClass();
+            testclass.LocationTest(19);
+        }
+        //##### end - do not move(this is line 22)
+        
         public void TestMethod1()
         {
             Console.WriteLine("This is a test in class 2");
@@ -25,7 +33,8 @@ namespace Inw.TestData
             Console.WriteLine("This is another test in class 2");
             Console.WriteLine(2.5f);
         }
-
+        
+        
         public void ParamsMethod(params int[] vs)
         {
             //do nothing
