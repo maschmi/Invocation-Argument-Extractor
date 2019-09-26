@@ -33,7 +33,13 @@ namespace Inw.TestData
             Console.WriteLine("This is another test in class 2");
             Console.WriteLine(2.5f);
         }
-        
+
+        public void TestInLambda()
+        {
+            var testClass = new TestClass();
+            IEnumerable<int> myEnumerable = new List<int>();
+            IEnumerable<int> something = myEnumerable.Select(e => e + testClass.FunctionInLambda(5));
+        }
         
         public void ParamsMethod(params int[] vs)
         {

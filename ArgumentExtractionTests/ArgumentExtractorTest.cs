@@ -7,8 +7,10 @@ using Inw.ArgumentExtraction.Extractors;
 using Inw.ArgumentExtraction.Finder;
 using Inw.ArgumentExtraction.Loader;
 using Inw.Logger;
+using Inw.TestData;
 using Microsoft.CodeAnalysis;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace Inw.ArgumentExtractionTests
 {
@@ -53,8 +55,28 @@ namespace Inw.ArgumentExtractionTests
         private async Task<IEnumerable<ISymbol>> GetTestSymbolForLocation()
         {
             return await _symbolExtractor.FindSymbols(_solution,
-                "Inw.TestData.TestClass",
-                "LocationTest",
+                typeof(TestClass).FullName,
+                nameof(TestClass.LocationTest),
+                new[] {"int"});
+        }
+        
+        [Test]
+        public async Task ArgumentExtractor_SymbolFoundInLambda_ReportsCorrectArguments()
+        {
+            var symbolToUse = (await GetTestSymbolLambdaInSelect()).FirstOrDefault();
+            var sut = new InvocationArgumentExtractor(_logger);
+            
+            var result = await sut.FindArguments(symbolToUse, _solution);
+
+            result.Should().HaveCount(1);
+            result.First().Arguments.FirstOrDefault()?.Should().Be("5");
+        }
+        
+        private async Task<IEnumerable<ISymbol>> GetTestSymbolLambdaInSelect()
+        {
+            return await _symbolExtractor.FindSymbols(_solution,
+                typeof(TestClass).FullName,
+                nameof(TestClass.FunctionInLambda),
                 new[] {"int"});
         }
     }

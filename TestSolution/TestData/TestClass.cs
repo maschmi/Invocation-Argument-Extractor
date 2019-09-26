@@ -28,5 +28,11 @@ namespace Inw.TestData
             Console.WriteLine("This is another test");
             Console.WriteLine(2.5f);
         }
+
+        public int FunctionInLambda(int i)
+        {
+            //do nothing
+            return default;
+        }
     }
 }
