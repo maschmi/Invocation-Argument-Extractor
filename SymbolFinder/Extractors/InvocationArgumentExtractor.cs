@@ -59,9 +59,9 @@ namespace Inw.ArgumentExtraction.Extractors
                 return new ArgumentSyntax[0];
             }
             if (nodes.Count() > 1)
-                _logger.Warning("Got multiple invocation nodes using only the first!");
+                _logger.Debug("Got multiple invocation nodes using only the last!");
 
-            return CalculateArguments(nodes.First());
+            return CalculateArguments(nodes.Last());
         }
         
 

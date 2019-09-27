@@ -71,7 +71,7 @@ namespace Inw.ArgumentExtractionTests
             var result = await sut.FindArguments(symbolToUse, _solution);
 
             result.Should().HaveCount(1);
-            result.First().Arguments.FirstOrDefault()?.Should().Be("5");
+            result.First().Arguments.FirstOrDefault()?.ToString().Should().Be("5");
         }
         
         private async Task<IEnumerable<ISymbol>> GetTestSymbolLambdaInSelect()
