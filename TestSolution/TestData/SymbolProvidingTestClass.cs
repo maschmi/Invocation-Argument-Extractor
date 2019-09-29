@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Inw.TestData
 {
     [ExcludeFromCodeCoverage]
-    public class TestClass
+    public class SymbolProvidingTestClass
     {
-        public TestClass()
+        public SymbolProvidingTestClass()
         {
 
         }
@@ -32,6 +32,12 @@ namespace Inw.TestData
         }
 
         public int FunctionInLambda(int i)
+        {
+            //do nothing
+            return default;
+        }
+
+        public bool FunctionInConstructor(params bool[] parameters)
         {
             //do nothing
             return default;

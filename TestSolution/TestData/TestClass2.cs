@@ -18,7 +18,7 @@ namespace Inw.TestData
         //#####do not move, this is for positional tests (this is line 18)
         private void LocationMethod()
         {
-            var testclass = new TestClass();
+            var testclass = new SymbolProvidingTestClass();
             testclass.LocationTest(19);
         }
         //##### end - do not move(this is line 24)
@@ -38,9 +38,16 @@ namespace Inw.TestData
 
         public void TestInLambda()
         {
-            var testClass = new TestClass();
+            var testClass = new SymbolProvidingTestClass();
             IEnumerable<int> myEnumerable = new List<int>();
             IEnumerable<int> something = myEnumerable.Select(e => e + testClass.FunctionInLambda(5));
+        }
+        
+        public void TestInCtor()
+        {
+            var testClass = new SymbolProvidingTestClass();
+            
+            _ = new TestClass3(testClass.FunctionInConstructor(new [] {true, false}));
         }
         
         public void ParamsMethod(params int[] vs)

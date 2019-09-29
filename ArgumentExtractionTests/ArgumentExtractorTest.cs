@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 using FluentAssertions;
 using Inw.ArgumentExtraction.DTO;
 using Inw.ArgumentExtraction.Extractors;
@@ -42,11 +44,11 @@ namespace Inw.ArgumentExtractionTests
         [Test]
         public async Task ArgumentExtractor_SymbolFound_ReportsCorrectLocation()
         {
-            var symbolToUse = (await GetTestSymbolForLocation()).FirstOrDefault();
+            var symbolToUse = await GetTestSymbolFor("LocationTest");
             var sut = new InvocationArgumentExtractor(_logger);
-            
+
             var result = await sut.FindArguments(symbolToUse, _solution);
-            
+
             result.Should().HaveCount(1);
             var firstResult = result.First();
             var location = firstResult.FilePosition;
@@ -54,32 +56,37 @@ namespace Inw.ArgumentExtractionTests
             location.col.Should().Be(23);
         }
 
-        private async Task<IEnumerable<ISymbol>> GetTestSymbolForLocation()
-        {
-            return await _symbolExtractor.FindSymbols(_solution,
-                typeof(TestClass).FullName,
-                nameof(TestClass.LocationTest),
-                new[] {"int"});
-        }
-        
         [Test]
-        public async Task ArgumentExtractor_SymbolFoundInLambda_ReportsCorrectArguments()
+        [TestCase(nameof(SymbolProvidingTestClass.FunctionInLambda), "5")]
+        [TestCase(nameof(SymbolProvidingTestClass.FunctionInConstructor), "new [] {true, false}")]
+        public async Task ArgumentExtractor_NestedInvoocations_ReportsCorrectArguments(string methodName,
+            string expectedaArgument)
         {
-            var symbolToUse = (await GetTestSymbolLambdaInSelect()).FirstOrDefault();
+            var symbolToUse = await GetTestSymbolFor(methodName);
             var sut = new InvocationArgumentExtractor(_logger);
-            
+
             var result = await sut.FindArguments(symbolToUse, _solution);
 
             result.Should().HaveCount(1);
-            result.First().Arguments.FirstOrDefault()?.ToString().Should().Be("5");
+            var arguments = result.First().Arguments;
+            arguments.Should().HaveCount(1);
+            arguments.First().ToString().Should().Be(expectedaArgument);
         }
-        
-        private async Task<IEnumerable<ISymbol>> GetTestSymbolLambdaInSelect()
+
+        private async Task<ISymbol> GetTestSymbolFor(string methodName)
         {
-            return await _symbolExtractor.FindSymbols(_solution,
-                typeof(TestClass).FullName,
-                nameof(TestClass.FunctionInLambda),
-                new[] {"int"});
+            var methodParameterMapping = new Dictionary<string, string[]>()
+            {
+                {nameof(SymbolProvidingTestClass.FunctionInLambda), new[] {"int"}},
+                {nameof(SymbolProvidingTestClass.FunctionInConstructor), new[] {"params", "bool"}},
+                {nameof(SymbolProvidingTestClass.LocationTest), new[] {"int"}}
+            };
+
+            return (await _symbolExtractor.FindSymbols(_solution,
+                    typeof(SymbolProvidingTestClass).FullName,
+                    methodName,
+                    methodParameterMapping[methodName]))
+                .FirstOrDefault();
         }
     }
 }

@@ -42,8 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestClass2.cs" />
-    <Compile Include="TestClass.cs" />
+    <Compile Include="SymbolProvidingTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClass3.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
