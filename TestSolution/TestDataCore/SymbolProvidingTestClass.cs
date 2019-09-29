@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Inw.TestData
 {
@@ -14,14 +11,14 @@ namespace Inw.TestData
         {
 
         }
-        
+
         public void LocationTest(int parameter)
-        {}
-            
+        { }
+
         public void TestMethod1()
         {
             Console.WriteLine("This is a test");
-            var test = new Dictionary<string,string>();
+            var test = new Dictionary<string, string>();
             test.TryGetValue("test", out string result);
         }
 

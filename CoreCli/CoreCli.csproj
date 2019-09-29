@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ArgumentExtractionCore\ArgumentExtractionCore.csproj" />
+      <ProjectReference Include="..\Logging\Inw.Logger\Inw.Logger.csproj" />
+      <ProjectReference Include="..\MSBuildLocatorCore\MSBuildLocatorCore.csproj" />
+    </ItemGroup>
+
+</Project>

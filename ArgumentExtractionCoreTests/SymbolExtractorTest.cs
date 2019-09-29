@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Inw.ArgumentExtraction.Finder;
 using Inw.ArgumentExtraction.Loader;
 using Inw.Logger;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Inw.ArgumentExtractor.MSBuildLocator.Core;
 
 namespace Inw.ArgumentExtractionTests
 {
@@ -32,7 +34,7 @@ namespace Inw.ArgumentExtractionTests
         public async Task OneTimeSetup()
         {
             _logger = new NullLogger();
-            _solutionLoader = new SolutionLoader(_logger, 0);
+            _solutionLoader = new SolutionLoader(new WorkspaceCreator(), _logger);
             _solution = await _solutionLoader.LoadSolution(TestDataLocator.CalculateTestDataSolutionPath());
         }
 

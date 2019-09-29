@@ -10,10 +10,10 @@ namespace Inw.Logger
         private readonly bool _info;
         private readonly bool _error;
 
-        public ConsoleLogger(bool verbose = false, 
-            bool debug = false, 
-            bool warning = true, 
-            bool info = true, 
+        public ConsoleLogger(bool verbose = false,
+            bool debug = false,
+            bool warning = true,
+            bool info = true,
             bool error = true)
         {
             _verbose = verbose;
@@ -25,33 +25,33 @@ namespace Inw.Logger
 
         public void Debug(string logmessage)
         {
-            if(_debug)                
+            if (_debug)
                 Console.WriteLine("[DEBUG]\t" + logmessage);
         }
 
         public void Error(string logmessage)
         {
             if (_error)
-                using(var colorScope = new ColorScope(ConsoleColor.Black, ConsoleColor.Red))
+                using (var colorScope = new ColorScope(ConsoleColor.Black, ConsoleColor.Red))
                     Console.WriteLine("[ERROR]\t" + logmessage);
         }
 
         public void Info(string logmessage)
         {
-            if (_info)                
+            if (_info)
                 Console.WriteLine("[INFO]\t" + logmessage);
         }
 
         public void Warning(string logmessage)
         {
-            if(_warning)
+            if (_warning)
                 using (var colorScope = new ColorScope(ConsoleColor.Black, ConsoleColor.Yellow))
                     Console.WriteLine("[WARN]\t" + logmessage);
         }
 
         public void Verbose(string logmessage)
         {
-            if(_verbose)
+            if (_verbose)
                 Console.WriteLine("[VERBOSE]\n\t" + logmessage);
         }
 

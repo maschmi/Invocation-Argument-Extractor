@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Inw.Logger
+﻿namespace Inw.Logger
 {
     public interface IDoLog
-    {        
+    {
         void Debug(string logmessage);
         void Error(string logmessage);
         void Info(string logmessage);

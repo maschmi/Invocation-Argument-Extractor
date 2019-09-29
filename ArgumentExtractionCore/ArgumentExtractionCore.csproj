@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Logging\Inw.Logger\Inw.Logger.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Build" Version="16.4.0" />
+      <PackageReference Include="Microsoft.Build.Framework" Version="16.4.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.4.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.4.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.4.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="3.4.0" />
+      <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="3.4.0" />
+    </ItemGroup>
+
+</Project>

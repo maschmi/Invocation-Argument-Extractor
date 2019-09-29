@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Inw.Logger</AssemblyName>
+    <RootNamespace>Inw.Logger</RootNamespace>
+    <PackageId>Inw.Logger</PackageId>
+    <Authors>Martin Schmidt</Authors>
+  </PropertyGroup>
+
+</Project>
