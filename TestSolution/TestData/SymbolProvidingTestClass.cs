@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Inw.TestData
 {
-    public class TestClass
+    [ExcludeFromCodeCoverage]
+    public class SymbolProvidingTestClass
     {
-        public TestClass()
+        public SymbolProvidingTestClass()
         {
 
         }
@@ -27,6 +29,18 @@ namespace Inw.TestData
         {
             Console.WriteLine("This is another test");
             Console.WriteLine(2.5f);
+        }
+
+        public int FunctionInLambda(int i)
+        {
+            //do nothing
+            return default;
+        }
+
+        public bool FunctionInConstructor(params bool[] parameters)
+        {
+            //do nothing
+            return default;
         }
     }
 }

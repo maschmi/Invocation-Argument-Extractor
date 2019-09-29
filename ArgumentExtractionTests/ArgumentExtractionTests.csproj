@@ -70,6 +70,10 @@
       <Project>{df62227f-5fa3-4db3-9726-ca68d4a5de2c}</Project>
       <Name>ArgumentExtraction</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TestSolution\TestData\TestData.csproj">
+      <Project>{afaf46c9-32f7-481a-bb07-8f0437ee524d}</Project>
+      <Name>TestData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
