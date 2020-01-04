@@ -1,7 +1,7 @@
 # Used to pull the dotnet latest docker image, resotre and build
 # the solution. Then run tests.
 
-image: mcr.microsoft.com/dotnet/core/sdk:latest
+image: mcr.microsoft.com/dotnet/core/sdk:2.1
 
 stages:
   - build
