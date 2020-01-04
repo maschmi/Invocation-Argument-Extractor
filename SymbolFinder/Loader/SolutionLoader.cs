@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Inw.Logger;
+﻿using Inw.Logger;
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Inw.ArgumentExtraction.Loader
 {
@@ -16,17 +16,17 @@ namespace Inw.ArgumentExtraction.Loader
         public SolutionLoader(IDoLog logger, int? defaultVSInstance = null)
         {
             _logger = logger ?? new NullLogger();
-            
+
             // Attempt to set the version of MSBuild.
             var visualStudioInstances = MSBuildLocator.QueryVisualStudioInstances().ToArray();
             var instance = GetInstance(visualStudioInstances, defaultVSInstance);
-            
+
             _logger.Info($"Using MSBuild at '{instance.MSBuildPath}' to load projects.");
 
             // NOTE: Be sure to register an instance with the MSBuildLocator 
             //       before calling MSBuildWorkspace.Create()
             //       otherwise, MSBuildWorkspace won't MEF compose.
-            if(!MSBuildLocator.IsRegistered)
+            if (!MSBuildLocator.IsRegistered)
                 MSBuildLocator.RegisterInstance(instance);
             _workspace = MSBuildWorkspace.Create();
         }
@@ -39,8 +39,8 @@ namespace Inw.ArgumentExtraction.Loader
 
             else if (defaultVSInstance != null)
                 return visualStudioInstances[defaultVSInstance.Value];
-            
-                // Handle selecting the version of MSBuild you want to use.
+
+            // Handle selecting the version of MSBuild you want to use.
             return SelectVisualStudioInstance(visualStudioInstances);
         }
 
@@ -69,7 +69,7 @@ namespace Inw.ArgumentExtraction.Loader
                 _logger.Warning($"    Version: {visualStudioInstances[i].Version}");
                 _logger.Warning($"    MSBuild Path: {visualStudioInstances[i].MSBuildPath}");
             }
-            
+
             while (true)
             {
                 var userResponse = Console.ReadLine();
@@ -92,11 +92,11 @@ namespace Inw.ArgumentExtraction.Loader
             {
                 if (disposing)
                 {
-                    _workspace.Dispose();                    
+                    _workspace.Dispose();
                     MSBuildLocator.Unregister();
                 }
 
-                
+
                 disposedValue = true;
             }
         }

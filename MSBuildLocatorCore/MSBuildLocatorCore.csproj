@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Inw.ArgumentExtractor.MSBuildLocator.Core</AssemblyName>
+        <RootNamespace>Inw.ArgumentExtractor.MSBuildLocator.Core</RootNamespace>
+        <PackageId>Inw.ArgumentExtractor.MSBuildLocator.Core</PackageId>
+        <Authors>Martin Schmidt</Authors>
+        <TargetFrameworks>netcoreapp2.1;netcoreapp2.2;netcoreapp3.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ArgumentExtractionCore\ArgumentExtractionCore.csproj" />
+      <ProjectReference Include="..\Logging\Inw.Logger\Inw.Logger.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-=======
 ﻿using System.Diagnostics.CodeAnalysis;
->>>>>>> moving-to-netcore
 using System.IO;
 using System.Reflection;
 

@@ -1,30 +1,15 @@
-<<<<<<< HEAD
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Xml.XPath;
-using FluentAssertions;
-using Inw.ArgumentExtraction.DTO;
-=======
 ﻿using FluentAssertions;
->>>>>>> moving-to-netcore
 using Inw.ArgumentExtraction.Extractors;
 using Inw.ArgumentExtraction.Finder;
 using Inw.ArgumentExtraction.Loader;
 using Inw.Logger;
-using Inw.TestData;
 using Microsoft.CodeAnalysis;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
-<<<<<<< HEAD
-=======
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
->>>>>>> moving-to-netcore
+using Inw.ArgumentExtractor.MSBuildLocator.Core;
 
 namespace Inw.ArgumentExtractionTests
 {
@@ -41,7 +26,7 @@ namespace Inw.ArgumentExtractionTests
         public async Task OneTimeSetup()
         {
             _logger = new NullLogger();
-            _solutionLoader = new SolutionLoader(_logger, 0);
+            _solutionLoader = new SolutionLoader(new WorkspaceCreator(logger: _logger),  _logger);
             _solution = await _solutionLoader.LoadSolution(TestDataLocator.CalculateTestDataSolutionPath());
             _symbolExtractor = new SymbolExtractorWithCompilation(_logger);
         }
@@ -68,14 +53,10 @@ namespace Inw.ArgumentExtractionTests
         }
 
         [Test]
-        [TestCase(nameof(SymbolProvidingTestClass.FunctionInLambda), "5")]
-<<<<<<< HEAD
-        [TestCase(nameof(SymbolProvidingTestClass.FunctionInConstructor), "new [] {true, false}")]
-=======
-        [TestCase(nameof(SymbolProvidingTestClass.FunctionInConstructor), "new[] { true, false }")]
->>>>>>> moving-to-netcore
-        public async Task ArgumentExtractor_NestedInvoocations_ReportsCorrectArguments(string methodName,
-            string expectedaArgument)
+        [TestCase("FunctionInLambda", "5")]
+        [TestCase("FunctionInConstructor", "new[] { true, false }")]
+        public async Task ArgumentExtractor_NestedInvocations_ReportsCorrectArguments(string methodName,
+            string expectedArgument)
         {
             var symbolToUse = await GetTestSymbolFor(methodName);
             var sut = new InvocationArgumentExtractor(_logger);
@@ -85,20 +66,20 @@ namespace Inw.ArgumentExtractionTests
             result.Should().HaveCount(1);
             var arguments = result.First().Arguments;
             arguments.Should().HaveCount(1);
-            arguments.First().ToString().Should().Be(expectedaArgument);
+            arguments.First().ToString().Should().Be(expectedArgument);
         }
 
         private async Task<ISymbol> GetTestSymbolFor(string methodName)
         {
             var methodParameterMapping = new Dictionary<string, string[]>()
             {
-                {nameof(SymbolProvidingTestClass.FunctionInLambda), new[] {"int"}},
-                {nameof(SymbolProvidingTestClass.FunctionInConstructor), new[] {"params", "bool"}},
-                {nameof(SymbolProvidingTestClass.LocationTest), new[] {"int"}}
+                {"FunctionInLambda", new[] {"int"}},
+                {"FunctionInConstructor", new[] { "params", "bool" }},
+                {"LocationTest", new[] {"int"}}
             };
 
             return (await _symbolExtractor.FindSymbols(_solution,
-                    typeof(SymbolProvidingTestClass).FullName,
+                    "Inw.TestData.SymbolProvidingTestClass",
                     methodName,
                     methodParameterMapping[methodName]))
                 .FirstOrDefault();

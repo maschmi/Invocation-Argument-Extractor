@@ -70,9 +70,15 @@
       <Project>{df62227f-5fa3-4db3-9726-ca68d4a5de2c}</Project>
       <Name>ArgumentExtraction</Name>
     </ProjectReference>
+<<<<<<< HEAD
     <ProjectReference Include="..\TestSolution\TestData\TestData.csproj">
       <Project>{afaf46c9-32f7-481a-bb07-8f0437ee524d}</Project>
       <Name>TestData</Name>
+=======
+    <ProjectReference Include="..\TestSolution\TestDataCore\TestDataCore.csproj">
+      <Project>{ec88a029-8d72-4749-a07b-2b45b9972b2c}</Project>
+      <Name>TestDataCore</Name>
+>>>>>>> moving-to-netcore
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

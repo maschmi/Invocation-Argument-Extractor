@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-﻿using System;
-using System.Collections.Generic;
-=======
 ﻿using FluentAssertions;
 using Inw.ArgumentExtraction.Loader;
 using NUnit.Framework;
->>>>>>> moving-to-netcore
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Inw.ArgumentExtractor.MSBuildLocator.Core;
 
 namespace Inw.ArgumentExtractionTests
 {
@@ -21,7 +17,7 @@ namespace Inw.ArgumentExtractionTests
         [Test]
         public async Task SolutionLoader_FileIsFound_SolutionIsLoaded()
         {
-            using (var solLoader = new SolutionLoader(null, 1))
+            using (var solLoader = new SolutionLoader(new WorkspaceCreator(),null))
             {
                 var solution = await solLoader.LoadSolution(_pathToTestSolution);
                 solution.Projects.Select(p => p.Name).Should().BeEquivalentTo(new[] { "TestDataCore" });
