@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<assemblies timestamp="01/04/2020 15:20:58">
+  <assembly name="C:\Users\martin\source\repos\SymbolFinder\ArgumentExtractionCoreTests\bin\Debug\netcoreapp2.1\ArgumentExtractionCoreTests.dll" run-date="2020-01-04" run-time="15:20:58" total="8" passed="8" failed="0" skipped="0" time="3.583" errors="0">
+    <errors />
+    <collection total="3" passed="3" failed="0" skipped="0" name="Test collection for Inw.ArgumentExtractionTests.ArgumentExtractorTest" time="2.327">
+      <test name="ArgumentExtractor_NestedInvocations_ReportsCorrectArguments(&quot;FunctionInLambda&quot;,&quot;5&quot;)" type="Inw.ArgumentExtractionTests.ArgumentExtractorTest" method="ArgumentExtractor_NestedInvocations_ReportsCorrectArguments" time="2.2620000" result="Pass">
+        <traits />
+      </test>
+      <test name="ArgumentExtractor_NestedInvocations_ReportsCorrectArguments(&quot;FunctionInConstructor&quot;,&quot;new[] { true, false }&quot;)" type="Inw.ArgumentExtractionTests.ArgumentExtractorTest" method="ArgumentExtractor_NestedInvocations_ReportsCorrectArguments" time="0.0610000" result="Pass">
+        <traits />
+      </test>
+      <test name="ArgumentExtractor_SymbolFound_ReportsCorrectLocation" type="Inw.ArgumentExtractionTests.ArgumentExtractorTest" method="ArgumentExtractor_SymbolFound_ReportsCorrectLocation" time="0.0040000" result="Pass">
+        <traits />
+      </test>
+    </collection>
+    <collection total="1" passed="1" failed="0" skipped="0" name="Test collection for Inw.ArgumentExtractionTests.SolutionLoaderTest" time="0.886">
+      <test name="SolutionLoader_FileIsFound_SolutionIsLoaded" type="Inw.ArgumentExtractionTests.SolutionLoaderTest" method="SolutionLoader_FileIsFound_SolutionIsLoaded" time="0.8860000" result="Pass">
+        <output>Msbuild failed when processing the file 'C:\Users\martin\source\repos\SymbolFinder\TestSolution\TestDataCore\TestDataCore.csproj' with message: C:\Program Files\dotnet\sdk\3.1.100\Sdks\Microsoft.NET.Sdk\targets\Microsoft.PackageDependencyResolution.targets: (234, 5): The "ResolvePackageAssets" task failed unexpectedly.
+System.IO.FileLoadException: Could not load file or assembly 'NuGet.Frameworks, Version=5.4.0.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35'. Could not find or load a specific file. (Exception from HRESULT: 0x80131621)
+File name: 'NuGet.Frameworks, Version=5.4.0.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35'
+   at Microsoft.NET.Build.Tasks.ResolvePackageAssets.CacheWriter..ctor(ResolvePackageAssets task)
+   at Microsoft.NET.Build.Tasks.ResolvePackageAssets.CacheReader.CreateReaderFromMemory(ResolvePackageAssets task, Byte[] settingsHash)
+   at Microsoft.NET.Build.Tasks.ResolvePackageAssets.CacheReader..ctor(ResolvePackageAssets task)
+   at Microsoft.NET.Build.Tasks.ResolvePackageAssets.ReadItemGroups()
+   at Microsoft.NET.Build.Tasks.ResolvePackageAssets.ExecuteCore()
+   at Microsoft.NET.Build.Tasks.TaskBase.Execute()
+   at Microsoft.Build.BackEnd.TaskExecutionHost.Microsoft.Build.BackEnd.ITaskExecutionHost.Execute() in /_/src/Build/BackEnd/TaskExecutionHost/TaskExecutionHost.cs:line 581
+   at Microsoft.Build.BackEnd.TaskBuilder.ExecuteInstantiatedTask(ITaskExecutionHost taskExecutionHost, TaskLoggingContext taskLoggingContext, TaskHost taskHost, ItemBucket bucket, TaskExecutionMode howToExecuteTask) in /_/src/Build/BackEnd/Components/RequestBuilder/TaskBuilder.cs:line 805
+
+
+
+</output>
+        <traits />
+      </test>
+    </collection>
+    <collection total="4" passed="4" failed="0" skipped="0" name="Test collection for Inw.ArgumentExtractionTests.SymbolExtractorTest" time="0.370">
+      <test name="Extractor_FindSystemConsoleWriteLineString_ReturnSymbol(Inw.ArgumentExtraction.Finder.SymbolExtractorWithCompilation)" type="Inw.ArgumentExtractionTests.SymbolExtractorTest" method="Extractor_FindSystemConsoleWriteLineString_ReturnSymbol" time="0.0890000" result="Pass">
+        <traits />
+      </test>
+      <test name="Extractor_FindSystemConsoleWriteLineString_ReturnSymbol(Inw.ArgumentExtraction.Finder.SymbolExtractorWithSymbolFinder)" type="Inw.ArgumentExtractionTests.SymbolExtractorTest" method="Extractor_FindSystemConsoleWriteLineString_ReturnSymbol" time="0.2550000" result="Pass">
+        <traits />
+      </test>
+      <test name="Extractor_FindTestMethodWithParams_ReturnSymbol(Inw.ArgumentExtraction.Finder.SymbolExtractorWithCompilation)" type="Inw.ArgumentExtractionTests.SymbolExtractorTest" method="Extractor_FindTestMethodWithParams_ReturnSymbol" time="0.0060000" result="Pass">
+        <traits />
+      </test>
+      <test name="Extractor_FindTestMethodWithParams_ReturnSymbol(Inw.ArgumentExtraction.Finder.SymbolExtractorWithSymbolFinder)" type="Inw.ArgumentExtractionTests.SymbolExtractorTest" method="Extractor_FindTestMethodWithParams_ReturnSymbol" time="0.0200000" result="Pass">
+        <traits />
+      </test>
+    </collection>
+  </assembly>
+</assemblies>

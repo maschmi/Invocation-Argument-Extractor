@@ -7,6 +7,6 @@
         /// </summary>
         /// <param name="hintPath"></param>
         /// <returns></returns>
-        string LocateMsBuild(string hintPath = "");
+        string LocateMsBuild(params string[] hintPath);
     }
 }

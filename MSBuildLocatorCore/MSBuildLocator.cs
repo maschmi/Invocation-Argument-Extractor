@@ -8,46 +8,54 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
 {
     internal sealed class MsBuildLocator : IMsBuildLocator
     {
-        private string _hintPath = string.Empty;
-
-        public string LocateMsBuild(string hintPath = "")
+        public string LocateMsBuild(params string[] additionSearchPaths)
         {
-            if (string.IsNullOrWhiteSpace(_hintPath))
-                _hintPath = GuessHintPathByOs();
+            List<string> hintPaths = new List<string>();
+            hintPaths = GuessHintPathsByOs().ToList();
+            if(additionSearchPaths != null)
+                hintPaths.AddRange(additionSearchPaths);
 
-            var results = SearchForMsBuild();
+            string path = null;
+            foreach (var  hintPath in hintPaths)
+            {
+                var results = SearchForMsBuild(hintPath);
 
-            var path = results
-                .Where(p => !p.Contains("nuget", StringComparison.InvariantCultureIgnoreCase))
-                .Where(p => !p.Contains("ref", StringComparison.InvariantCultureIgnoreCase))
-                .OrderByDescending(p => p).FirstOrDefault();
+                path = results
+                    .Where(p => !p.Contains("nuget", StringComparison.InvariantCultureIgnoreCase))
+                    .Where(p => !p.Contains("ref", StringComparison.InvariantCultureIgnoreCase))
+                    .OrderByDescending(p => p).FirstOrDefault();
+
+                if (path != null)
+                    break;
+            }
+            
             if (string.IsNullOrWhiteSpace(path))
-                throw new MsBuildNotFoundException($"MSBuild.dll/MSBuild.exe not found under {_hintPath}");
+                throw new MsBuildNotFoundException($"MSBuild.dll/MSBuild.exe not found under {hintPaths}");
 
             return path;
         }
 
-        private IEnumerable<string> SearchForMsBuild()
+        private IEnumerable<string> SearchForMsBuild(string hintPath)
         {
             var results =
-                Directory.EnumerateFiles(_hintPath, "msbuild.dll", SearchOption.AllDirectories);
+                Directory.EnumerateFiles(hintPath, "msbuild.dll", SearchOption.AllDirectories);
             if (!results.Any() && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                results = Directory.EnumerateFiles(_hintPath, "msbuild.exe", SearchOption.AllDirectories);
+                results = Directory.EnumerateFiles(hintPath, "msbuild.exe", SearchOption.AllDirectories);
             return results;
         }
 
-        private string GuessHintPathByOs()
+        private IEnumerable<string> GuessHintPathsByOs()
         {
             var linux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
             var windows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
             var osx = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
 
             if (linux)
-                return "/etc";
+                return new [] {"/usr/share/dotnet", "/etc", "/usr", "/opt"}; //from specific to unspecific
             if (windows)
-                return @"C:\Program Files\dotnet";
+                return new [] { @"C:\Program Files\dotnet" };
             if (osx)
-                return "/usr/local/share/dotnet/dotnet";
+                return new [] { "/usr/local/share/dotnet/dotnet" };
             
             throw new NotImplementedException("unknown os");
         }
