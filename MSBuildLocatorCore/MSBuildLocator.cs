@@ -33,7 +33,7 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
             }
             
             if (string.IsNullOrWhiteSpace(path))
-                throw new MsBuildNotFoundException($"MSBuild.dll/MSBuild.exe not found under {hintPaths}");
+                throw new MsBuildNotFoundException($"MSBuild.dll/MSBuild.exe not found under {string.Join(';', hintPaths)}");
 
             return path;
         }
@@ -54,7 +54,7 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
             var osx = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
 
             if (linux)
-                return new [] {"/usr/share/dotnet", "/etc", "/usr", "/opt"}; //from specific to unspecific
+                return new [] {"/usr/share/dotnet/sdk/2.2.207", "/usr/share/dotnet", "/etc", "/usr", "/opt"}; //from specific to unspecific
             if (windows)
                 return new [] { @"C:\Program Files\dotnet" };
             if (osx)
