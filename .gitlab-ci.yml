@@ -4,8 +4,7 @@
 image: mcr.microsoft.com/dotnet/core/sdk:2.2
 
 stages:
-  - build
-  - test
+  - build  
 
 before_script:
   - "dotnet restore ./ArgumentExtractionCore"
@@ -15,9 +14,7 @@ build:
   script:
     - "dotnet build ./ArgumentExtractionCoreTests"
     - "dotnet build ./ArgumentExtractionCore"
-  
-test:
-  stage: test
+    - "dotnet test --logger:\"xunit;LogFilePath=test_results.xml\" --collect:\"XPlat Code Coverage\""
   artifacts:
     when: always 
     paths:
@@ -26,7 +23,4 @@ test:
     reports:
       junit: $TESTPROJECTDIR/test_results.xml
     expire_in: 3 days
-  script:    
-    - "dotnet test --logger:\"xunit;LogFilePath=test_results.xml\" --collect:\"XPlat Code Coverage\""
-    - "awk  -F' ' '/^<coverage/ {print $2 }' CellGameTest/TestResults/*/*.xml"    
   coverage: '/line-rate\="[0-9]\.[0-9]*"/'
