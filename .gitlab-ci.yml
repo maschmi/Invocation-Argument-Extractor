@@ -4,13 +4,13 @@
 image: mcr.microsoft.com/dotnet/core/sdk:2.2
 
 stages:
-  - build  
+  - test 
 
 before_script:
   - "dotnet restore ./ArgumentExtractionCore"
 
 build:
-  stage: build
+  stage: test
   script:
     - "dotnet build ./ArgumentExtractionCoreTests"
     - "dotnet build ./ArgumentExtractionCore"
