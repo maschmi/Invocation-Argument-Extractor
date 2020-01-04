@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace Inw.ArgumentExtractor.MSBuildLocator
 {
+    [ExcludeFromCodeCoverage]
     [Serializable]
     public class VisualStudioNotFoundException : Exception
     {

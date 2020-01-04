@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace Inw.ArgumentExtractor.MSBuildLocator.Core
 {
+    [ExcludeFromCodeCoverage]
     [Serializable]
-    public class MSBuildNotFoundException : Exception
+    public class MsBuildNotFoundException : Exception
     {
         //
         // For guidelines regarding the creation of new exception types, see
@@ -13,19 +15,19 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
         //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
         //
 
-        public MSBuildNotFoundException()
+        public MsBuildNotFoundException()
         {
         }
 
-        public MSBuildNotFoundException(string message) : base(message)
+        public MsBuildNotFoundException(string message) : base(message)
         {
         }
 
-        public MSBuildNotFoundException(string message, Exception inner) : base(message, inner)
+        public MsBuildNotFoundException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected MSBuildNotFoundException(
+        protected MsBuildNotFoundException(
             SerializationInfo info,
             StreamingContext context) : base(info, context)
         {

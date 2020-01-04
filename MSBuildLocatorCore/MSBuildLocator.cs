@@ -22,7 +22,7 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
                 .Where(p => !p.Contains("ref", StringComparison.InvariantCultureIgnoreCase))
                 .OrderByDescending(p => p).FirstOrDefault();
             if (string.IsNullOrWhiteSpace(path))
-                throw new MSBuildNotFoundException($"MSBuild.dll/MSBuild.exe not found under {_hintPath}");
+                throw new MsBuildNotFoundException($"MSBuild.dll/MSBuild.exe not found under {_hintPath}");
 
             return path;
         }
