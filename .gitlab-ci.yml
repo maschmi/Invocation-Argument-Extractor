@@ -8,7 +8,7 @@ stages:
   - test
 
 before_script:
-  - "dotnet restore"
+  - "dotnet restore ./ArgumentExtractionCore"
 
 build:
   stage: build
