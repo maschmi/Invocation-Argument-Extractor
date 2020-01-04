@@ -41,9 +41,9 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
         private IEnumerable<string> SearchForMsBuild(string hintPath)
         {
             var results =
-                Directory.EnumerateFiles(hintPath, "msbuild.dll", SearchOption.AllDirectories);
+                Directory.EnumerateFiles(hintPath, "MSBuild.dll", SearchOption.AllDirectories);
             if (!results.Any() && RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                results = Directory.EnumerateFiles(hintPath, "msbuild.exe", SearchOption.AllDirectories);
+                results = Directory.EnumerateFiles(hintPath, "MSBuild.exe", SearchOption.AllDirectories);
             return results;
         }
 
