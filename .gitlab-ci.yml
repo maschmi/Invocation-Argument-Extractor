@@ -1,0 +1,31 @@
+# Used to pull the dotnet latest docker image, resotre and build
+# the solution. Then run tests.
+
+image: mcr.microsoft.com/dotnet/core/sdk:latest
+
+stages:
+  - build
+  - test
+
+before_script:
+  - "dotnet restore"
+
+build:
+  stage: build
+  script:
+    - "dotnet build"
+  
+test:
+  stage: test
+  artifacts:
+    when: always 
+    paths:
+      - $TESTPROJECTDIR/test_results.xml
+      - $TESTPROJECTDIR/TestResults/*/*.xml
+    reports:
+      junit: $TESTPROJECTDIR/test_results.xml
+    expire_in: 3 days
+  script:    
+    - "dotnet test --logger:\"xunit;LogFilePath=test_results.xml\" --collect:\"XPlat Code Coverage\""
+    - "awk  -F' ' '/^<coverage/ {print $2 }' CellGameTest/TestResults/*/*.xml"    
+  coverage: '/line-rate\="[0-9]\.[0-9]*"/'
