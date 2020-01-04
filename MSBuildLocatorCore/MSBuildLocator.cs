@@ -18,6 +18,9 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
             string path = null;
             foreach (var  hintPath in hintPaths)
             {
+                if (string.IsNullOrWhiteSpace(hintPath))
+                    continue;
+                
                 var results = SearchForMsBuild(hintPath);
 
                 path = results
