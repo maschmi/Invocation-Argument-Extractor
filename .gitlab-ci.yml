@@ -13,8 +13,8 @@ before_script:
 build:
   stage: build
   script:
-    - "dotnet build .\ArgumentExtractionCoreTests\"
-    - "dotnet build .\ArgumentExtractionCore\"
+    - "dotnet build ./ArgumentExtractionCoreTests"
+    - "dotnet build ./ArgumentExtractionCore"
   
 test:
   stage: test
