@@ -18,9 +18,10 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
             string path = null;
             foreach (var  hintPath in hintPaths)
             {
-                if (string.IsNullOrWhiteSpace(hintPath))
+                if (string.IsNullOrWhiteSpace(hintPath) 
+                    || !Directory.Exists(hintPath))
                     continue;
-                
+                    
                 var results = SearchForMsBuild(hintPath);
 
                 path = results
@@ -54,7 +55,7 @@ namespace Inw.ArgumentExtractor.MSBuildLocator.Core
             var osx = RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
 
             if (linux)
-                return new [] {"/usr/share/dotnet/sdk/2.2.207", "/usr/share/dotnet", "/etc", "/usr", "/opt"}; //from specific to unspecific
+                return new [] { "/usr/share/dotnet", "/etc", "/usr", "/opt"}; //from specific to unspecific
             if (windows)
                 return new [] { @"C:\Program Files\dotnet" };
             if (osx)
